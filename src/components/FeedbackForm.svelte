@@ -3,8 +3,7 @@
   import Button from './Button.svelte'
   import RatingSelect from './RatingSelect.svelte'
   import {v4 as uuidv4} from 'uuid'
-  import {createEventDispatcher} from 'svelte'
-  const dispatch= createEventDispatcher()
+  import {FeedbackStore} from "../store"
   let text=''
   let rating = 10
   let btnDisabled= true
@@ -27,7 +26,9 @@
         text,
         rating: +rating
       }
-      dispatch('add-feedback', newFeedback)
+      FeedbackStore.update((currentFeedback)=>{
+        return [newFeedback, ...currentFeedback]
+      })
       text= ''
     }
   }
