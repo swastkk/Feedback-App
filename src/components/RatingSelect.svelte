@@ -1,7 +1,10 @@
 <script>
+  import {createEventDispatcher} from 'svelte'
   let selected = 10
-  const onChange= () =>{
-    console.log(1)
+  const dispatch= createEventDispatcher()
+  const onChange= (e) =>{
+    selected = e.currentTarget.value
+    dispatch('rating-selected', selected)
   }
 </script>
 <ul class="rating">
@@ -48,17 +51,13 @@
 </ul>
 
 <style>
-  ul.rating {
-    list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-  }
-.rating {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 30px 0;
-  }
+ 
+  .rating {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin: 30px 0;
+    }
   .rating li {
     position: relative;
     background: #f4f4f4;
