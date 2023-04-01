@@ -31,6 +31,7 @@ function serve() {
 
 export default {
 	input: 'src/main.js',
+  base: "Feedback-App",
 	output: {
 		sourcemap: true,
 		format: 'iife',
